@@ -9,31 +9,34 @@ YOUTUBE, VK, TIKTOK, TG, DISCORD = getenv("YOUTUBE_LINK"), getenv("VK_LINK"), ge
 bot = TeleBot(TOKEN, parse_mode="markdown")
 
 
+GLOBAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
+for btn in ('🌐 СоцСети', '📈 Курсы', '📃 О боте'):
+    GLOBAL_MENU.add(btn)
+
+SOCIAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
+SOCIAL_MENU.add(types.InlineKeyboardButton("YouTube", url=YOUTUBE))
+SOCIAL_MENU.add(types.InlineKeyboardButton("VK", url=VK))
+SOCIAL_MENU.add(types.InlineKeyboardButton("TikTok", url=TIKTOK))
+SOCIAL_MENU.add(types.InlineKeyboardButton("Telegram", url=TG))
+SOCIAL_MENU.add(types.InlineKeyboardButton("Discord", url=DISCORD))
+SOCIAL_MENU.add(types.InlineKeyboardButton("◀️ Вернуться"))
+
+
 ABOUT_BOT = """   *Learning Program* - проект по обучению пользователей данного бота в котором вы узнаете основы языков:
-*С#*, *Python* и JavaScript, а также самые популярные библиотеки. В будущем будет большее количество языков программирования. 
+*С#*, *Python* и *JavaScript*, а также самые популярные библиотеки. В будущем будет большее количество языков программирования. 
 Если вы нашли баг напиши нам в соцсетях и мы обязательно его исправим.
 NorthStartStudio"""
 
 
 # Приветствие
 @bot.message_handler(command = ['start'])
-def start_command(message: types.Message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    for btn in ('🌐 СоцСети', '📈 Курсы', '📃 О боте'):
-        markup.add(btn)
-    bot.reply_to_message(message, f"Привет, *{message.from_user.full_name}*! Выбери действие:", reply_markup=markup)
+def start_command(message: types.Message):    
+    bot.reply_to_message(message, f"Привет, *{message.from_user.full_name}*! Выбери действие:", reply_markup=GLOBAL_MENU)
 
 
 # Обработка о соцсетях
 def social_response(message: types.Message):
-    menu = types.InlineKeyboardMarkup()
-    menu.add(types.InlineKeyboardButton("YouTube", url=YOUTUBE))
-    menu.add(types.InlineKeyboardButton("VK", url=VK))
-    menu.add(types.InlineKeyboardButton("TikTok", url=TIKTOK))
-    menu.add(types.InlineKeyboardButton("Telegram", url=TG))
-    menu.add(types.InlineKeyboardButton("Discord", url=DISCORD))
-    menu.add(types.InlineKeyboardButton("◀️ Вернуться"))
-    bot.reply_to(message, "Наши соцсети:", reply_markup=menu)
+    bot.reply_to(message, "Наши соцсети:", reply_markup=SOCIAL_MENU)
 
 
 # Обработка о курсах
@@ -45,6 +48,8 @@ def course_response(message):
 def about_bot_response(message: types.Message):
     bot.reply_to(message, ABOUT_BOT)
 
+def return_responce(message: types.Message):
+    bot.reply_to(message, "Возращаемся :)", reply_markup=GLOBAL_MENU)
 
 # Обработка кнопок
 @bot.message_handler(content_types = ['text'])
@@ -54,6 +59,6 @@ def button_handler(message: types.Message):
     elif message.text == '📈 Курсы':
         course_response(message)
     elif message.text == '🌐 СоцСети':
-        social_response()
+        social_response(message)
 
 bot.infinity_polling()
