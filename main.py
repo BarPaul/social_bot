@@ -13,7 +13,7 @@ GLOBAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
 for btn in ('🌐 СоцСети', '📈 Курсы', '📃 О боте'):
     GLOBAL_MENU.add(btn)
 
-SOCIAL_MENU = types.InlineKeyboardButton(resize_keyboard=True)
+SOCIAL_MENU = types.InlineKeyboardMarkup()
 SOCIAL_MENU.add(types.InlineKeyboardButton("YouTube", url=YOUTUBE))
 SOCIAL_MENU.add(types.InlineKeyboardButton("VK", url=VK))
 SOCIAL_MENU.add(types.InlineKeyboardButton("TikTok", url=TIKTOK))
