@@ -31,7 +31,7 @@ NorthStartStudio"""
 # Приветствие
 @bot.message_handler(commands = ['start'])
 def start_command(message: types.Message):    
-    bot.reply_to_message(message, f"Привет, *{message.from_user.full_name}*! Выбери действие:", reply_markup=GLOBAL_MENU)
+    bot.reply_to(message, f"Привет, *{message.from_user.full_name}*! Выбери действие:", reply_markup=GLOBAL_MENU)
 
 
 # Обработка о соцсетях
