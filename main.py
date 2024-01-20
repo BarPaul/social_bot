@@ -9,6 +9,7 @@ YOUTUBE, VK, TIKTOK, TG, DISCORD = getenv("YOUTUBE_LINK"), getenv("VK_LINK"), ge
 bot = TeleBot(TOKEN, parse_mode="markdown")
 
 
+# This command show social network
 @bot.message_handler(commands=["start"])
 def start_command(message: types.Message):
     menu = types.InlineKeyboardMarkup()
