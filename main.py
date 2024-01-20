@@ -22,6 +22,7 @@ def start_command(message: types.Message):
 
 
 # Комментиккккккккккккккккккккккккк
-
+def kaka():
+    pass
 
 bot.infinity_polling()
