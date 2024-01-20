@@ -48,7 +48,7 @@ def course_response(message):
 def about_bot_response(message: types.Message):
     bot.reply_to(message, ABOUT_BOT)
 
-def return_responce(message: types.Message):
+def return_response(message: types.Message):
     bot.reply_to(message, "Возращаемся :)", reply_markup=GLOBAL_MENU)
 
 # Обработка кнопок
@@ -59,6 +59,8 @@ def button_handler(message: types.Message):
     elif message.text == '📈 Курсы':
         course_response(message)
     elif message.text == '🌐 СоцСети':
-        social_response(message)
+        social_response(message) 
+    elif message.text == '◀️ Вернуться':
+        return_response(message)
 
 bot.infinity_polling()
