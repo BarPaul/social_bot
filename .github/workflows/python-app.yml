@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  TOKEN: ${{secrets.TOKEN}}
+  TOKEN: ${{Telegram BOT.TOKEN}}
 
 jobs:
   build:
