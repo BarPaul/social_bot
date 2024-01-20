@@ -21,4 +21,7 @@ def start_command(message: types.Message):
     bot.reply_to_message(message, f"Привет, *{message.from_user.full_name}*! Какую соцсеть вы хотите посетить?", reply_markup=menu)
 
 
+# Комментиккккккккккккккккккккккккк
+
+
 bot.infinity_polling()
