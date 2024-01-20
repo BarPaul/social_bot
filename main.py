@@ -29,7 +29,7 @@ NorthStartStudio"""
 
 
 # Приветствие
-@bot.message_handler(command = ['start'])
+@bot.message_handler(commands = ['start'])
 def start_command(message: types.Message):    
     bot.reply_to_message(message, f"Привет, *{message.from_user.full_name}*! Выбери действие:", reply_markup=GLOBAL_MENU)
 
@@ -48,8 +48,11 @@ def course_response(message):
 def about_bot_response(message: types.Message):
     bot.reply_to(message, ABOUT_BOT)
 
+
+# Обработки кнопки обратно
 def return_response(message: types.Message):
     bot.reply_to(message, "Возращаемся :)", reply_markup=GLOBAL_MENU)
+
 
 # Обработка кнопок
 @bot.message_handler(content_types = ['text'])
@@ -62,5 +65,6 @@ def button_handler(message: types.Message):
         social_response(message) 
     elif message.text == '◀️ Вернуться':
         return_response(message)
+
 
 bot.infinity_polling()
