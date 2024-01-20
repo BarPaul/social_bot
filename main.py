@@ -13,7 +13,7 @@ GLOBAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
 for btn in ('🌐 СоцСети', '📈 Курсы', '📃 О боте'):
     GLOBAL_MENU.add(btn)
 
-SOCIAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
+SOCIAL_MENU = types.InlineKeyboardButton(resize_keyboard=True)
 SOCIAL_MENU.add(types.InlineKeyboardButton("YouTube", url=YOUTUBE))
 SOCIAL_MENU.add(types.InlineKeyboardButton("VK", url=VK))
 SOCIAL_MENU.add(types.InlineKeyboardButton("TikTok", url=TIKTOK))
@@ -41,7 +41,7 @@ def social_response(message: types.Message):
 
 # Обработка о курсах
 def course_response(message):
-    bot.reply_to(message, "Under constraction")
+    bot.reply_to(message, "Under construction")
 
 
 # Обработка о боте
