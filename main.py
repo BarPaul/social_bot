@@ -14,12 +14,11 @@ for btn in ('🌐 СоцСети', '📈 Курсы', '📃 О боте'):
     GLOBAL_MENU.add(btn)
 
 SOCIAL_MENU = types.InlineKeyboardMarkup()
-SOCIAL_MENU.add(types.InlineKeyboardButton("YouTube", url=YOUTUBE))
-SOCIAL_MENU.add(types.InlineKeyboardButton("VK", url=VK))
-SOCIAL_MENU.add(types.InlineKeyboardButton("TikTok", url=TIKTOK))
-SOCIAL_MENU.add(types.InlineKeyboardButton("Telegram", url=TG))
-SOCIAL_MENU.add(types.InlineKeyboardButton("Discord", url=DISCORD))
-SOCIAL_MENU.add(types.InlineKeyboardButton("◀️ Вернуться"))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="YouTube", url=YOUTUBE))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="VK", url=VK))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="TikTok", url=TIKTOK))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="Discord", url=DISCORD))
 
 
 ABOUT_BOT = """   *Learning Program* - проект по обучению пользователей данного бота в котором вы узнаете основы языков:
