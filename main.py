@@ -64,17 +64,19 @@ def full_version_response(message: types.Message):
                         prices=[types.LabeledPrice("Подписка", PRICE * 100)], reply_to_message_id=message.id
         )
     else:
-        bot.reply_to(message, "Спасибо за поддержку проекта :)")
+        # TODO: Расширенное меню языка программирования
+        bot.reply_to(message, "Under construction")
 
 
 # Бесплатная версия
 def trial_version_response(message: types.Message):
+    # TODO: Меню выбора языка программирования
     bot.reply_to(message, "Under construction")
 
 
 # Обработки кнопки обратно
 def return_response(message: types.Message):
-    bot.reply_to(message, "Возращаемся :)", reply_markup=GLOBAL_MENU)
+    bot.reply_to(message, "Возращаемся в главное меню...", reply_markup=GLOBAL_MENU)
 
 
 # Обработка кнопок
@@ -97,6 +99,9 @@ def button_handler(message: types.Message):
 # Обработка успешной оплаты
 @bot.message_handler(content_types=['successful_payment'])
 def successful_payment(message: types.Message):
+    # TEST print
+    payment = message.successful_payment
+    print(payment.currency, payment.order_info, payment.invoice_payload, payment.total_amount, payment.telegram_payment_charge_id, payment.provider_payment_charge_id, payment.shipping_option_id, sep='\n')
     if not db.isPurchased(message.from_user.id):
         db.insertUser(message.from_user.id)
 
