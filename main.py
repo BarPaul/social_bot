@@ -7,7 +7,7 @@ from os import getenv
 
 load_dotenv(find_dotenv())
 TOKEN: Final = getenv("TOKEN")
-YOUTUBE, VK, TIKTOK, TG, DISCORD = getenv("YOUTUBE_LINK"), getenv("VK_LINK"), getenv("TIKTOK_LINK"), getenv("TG_LINK"), getenv("DISCORD_LINK")
+YOUTUBE, TIKTOK, TG, DISCORD = getenv("YOUTUBE_LINK"), getenv("TIKTOK_LINK"), getenv("TG_LINK"), getenv("DISCORD_LINK")
 bot = TeleBot(TOKEN, parse_mode="markdown")
 db = Database()
 
@@ -17,11 +17,8 @@ for btn in ('📈 Курсы', '🌐 СоцСети', '📃 О боте'):
     GLOBAL_MENU.add(btn)
 
 SOCIAL_MENU = types.InlineKeyboardMarkup()
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="YouTube", url=YOUTUBE))
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="VK", url=VK))
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="TikTok", url=TIKTOK))
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG))
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="Discord", url=DISCORD))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="YouTube", url=YOUTUBE), types.InlineKeyboardButton(text="TikTok", url=TIKTOK))
+SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG), types.InlineKeyboardButton(text="Discord", url=DISCORD))
 
 VERSIONS = types.ReplyKeyboardMarkup(resize_keyboard=True)
 for btn in ('📒 Полный Курс', '✏️ Курс', '◀️ Вернуться'):
