@@ -40,7 +40,9 @@ def language_response(message: types.Message, language_markup: types.InlineKeybo
         bot.reply_to(message, "У вас открыты все ссылки :)\nСпасибо за вашу поддержку 💖.", reply_markup=language_markup)
     else:
         for i in range(1, len(language_markup.keyboard[0])):
-            language_markup.keyboard[0][i] = NEED_SUBSCRIPTION
+            language_markup.keyboard[0][i].text = f"❌ {language_markup.keyboard[0][i].text}"
+            language_markup.keyboard[0][i].url = None
+            language_markup.keyboard[0][i].callback_data = "need_subscription"
         bot.reply_to(message, "У вас открыты не все ссылки :(\nДля их открытия оплатите подписку", reply_markup=language_markup)
 
 

@@ -29,7 +29,6 @@ LANGUAGES_MENU.keyboard = [["💻 C#", "💻 Javascript", "💻 Python"], ["◀�
 PRICE = getenv("FULL_PRICE")
 PAYLOAD_TOKEN = getenv("PAYLOAD_TOKEN")
 
-NEED_SUBSCRIPTION = types.InlineKeyboardButton(text="❌ Нужна подписка", callback_data="need_subscription")
 
 CSHARP_RESOURCES = types.InlineKeyboardMarkup()
 JAVASCRIPT_RESOURCES = types.InlineKeyboardMarkup()
