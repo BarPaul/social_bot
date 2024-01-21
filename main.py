@@ -12,7 +12,7 @@ bot = TeleBot(TOKEN, parse_mode="markdown")
 db = Database()
 
 
-VERSIONS = GLOBAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
+GLOBAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
 for btn in ('📈 Курсы', '🌐 СоцСети', '📃 О боте'):
     GLOBAL_MENU.add(btn)
 
@@ -23,6 +23,7 @@ SOCIAL_MENU.add(types.InlineKeyboardButton(text="TikTok", url=TIKTOK))
 SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG))
 SOCIAL_MENU.add(types.InlineKeyboardButton(text="Discord", url=DISCORD))
 
+VERSIONS = types.ReplyKeyboardMarkup(resize_keyboard=True)
 for btn in ('📒 Полный Курс', '✏️ Курс', '◀️ Вернуться'):
     VERSIONS.add(btn)
 
