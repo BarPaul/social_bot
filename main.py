@@ -64,8 +64,7 @@ def full_version_response(message: types.Message):
                         prices=[types.LabeledPrice("Подписка", PRICE * 100)], reply_to_message_id=message.id
         )
     else:
-        # TODO: Расширенное меню языка программирования
-        bot.reply_to(message, "Under construction")
+        bot.reply_to(message, "Спасибо за вашу поддержку 💖. У вас уже открыта полная версия")
 
 
 # Бесплатная версия
