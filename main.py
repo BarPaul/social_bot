@@ -23,7 +23,7 @@ SOCIAL_MENU.add(types.InlineKeyboardButton(text="TikTok", url=TIKTOK))
 SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG))
 SOCIAL_MENU.add(types.InlineKeyboardButton(text="Discord", url=DISCORD))
 
-for btn in ('📒 Полная', '✏️ Пробная', '◀️ Вернуться'):
+for btn in ('📒 Полный Курс', '✏️ Курс', '◀️ Вернуться'):
     VERSIONS.add(btn)
 
 PRICE = getenv("FULL_PRICE")
@@ -47,7 +47,7 @@ def social_response(message: types.Message):
 
 
 # Обработка о курсах
-def course_response(message):
+def choose_course_version_response(message):
     bot.reply_to(message, "Какую версию выбираете?\n*Пробная версия* - это доступ только к половине курсов\n*Полная версия* - это полный доступ ко всему курсу", reply_markup=VERSIONS)
 
 
@@ -68,7 +68,7 @@ def full_version_response(message: types.Message):
 
 
 # Бесплатная версия
-def trial_version_response(message: types.Message):
+def course_response(message: types.Message):
     # TODO: Меню выбора языка программирования
     bot.reply_to(message, "Under construction")
 
@@ -84,13 +84,13 @@ def button_handler(message: types.Message):
     if message.text == '📃 О боте':
         about_bot_response(message)
     elif message.text == '📈 Курсы':
-        course_response(message)
+        choose_course_version_response(message)
     elif message.text == '🌐 СоцСети':
         social_response(message) 
-    elif message.text == '📒 Полная':
+    elif message.text == '📒 Полный Курс':
         full_version_response(message)
-    elif message.text == '✏️ Пробная':
-        trial_version_response(message)
+    elif message.text == '✏️ Курс':
+        course_response(message)
     elif message.text == '◀️ Вернуться':
         return_response(message)
 
