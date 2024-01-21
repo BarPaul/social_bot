@@ -1,6 +1,5 @@
 from telebot import types
 from constans import *
-from copy import deepcopy
 
 
 # Приветствие
