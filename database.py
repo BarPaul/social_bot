@@ -3,7 +3,7 @@ from sqlite3 import connect
 
 class Database:
     def __init__(self):
-        self.conn = connect("database.db")
+        self.conn = connect("database.db", check_same_thread=False)
         self.cur = self.conn.cursor()
         self.cur.execute("""CREATE TABLE IF NOT EXISTS users (id INTEGER)""")
         self.conn.commit()

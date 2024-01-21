@@ -1,36 +1,5 @@
-from dotenv import load_dotenv, find_dotenv
-from telebot import TeleBot, types
-from typing import Final
-from database import Database
-from os import getenv
-
-
-load_dotenv(find_dotenv())
-TOKEN: Final = getenv("TOKEN")
-YOUTUBE, TIKTOK, TG, DISCORD = getenv("YOUTUBE_LINK"), getenv("TIKTOK_LINK"), getenv("TG_LINK"), getenv("DISCORD_LINK")
-bot = TeleBot(TOKEN, parse_mode="markdown")
-db = Database()
-
-
-GLOBAL_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
-for btn in ('📈 Курсы', '🌐 СоцСети', '📃 О боте'):
-    GLOBAL_MENU.add(btn)
-
-SOCIAL_MENU = types.InlineKeyboardMarkup()
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="YouTube", url=YOUTUBE), types.InlineKeyboardButton(text="TikTok", url=TIKTOK))
-SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG), types.InlineKeyboardButton(text="Discord", url=DISCORD))
-
-VERSIONS = types.ReplyKeyboardMarkup(resize_keyboard=True)
-for btn in ('📒 Полный Курс', '✏️ Курс', '◀️ Вернуться'):
-    VERSIONS.add(btn)
-
-PRICE = getenv("FULL_PRICE")
-PAYLOAD_TOKEN = getenv("PAYLOAD_TOKEN")
-
-ABOUT_BOT = """*Learning Program* - проект по обучению пользователей, в котором вы узнаете основы языков:
-*С#*, *Python* и *JavaScript*, а также самые популярные библиотеки. В будущем наш проект будет пополняться новыми знаниями.
-Если вы нашли недочет или есть предложение, напишите нам в соцсетях. Будем рады любому фидбеку :)
-©️ *NorthStartStudio*"""
+from telebot import types
+from constans import *
 
 
 # Приветствие
@@ -56,8 +25,8 @@ def about_bot_response(message: types.Message):
 
 # Платная версия
 def full_version_response(message: types.Message):
-    if db.isPurchased(message.from_user.id):
-        bot.send_invoice(message.chat.id, title="Оплати подписку", description="Данная подписка дает вам полный доступ к курсам",
+    if not db.isPurchased(message.from_user.id):
+        bot.send_invoice(message.chat.id, title="Оплатите подписку", description="Данная подписка дает вам полный доступ к курсам",
                         invoice_payload=f"fullversion_{message.from_user.id}", currency="RUB", provider_token=PAYLOAD_TOKEN,
                         prices=[types.LabeledPrice("Подписка", PRICE * 100)], reply_to_message_id=message.id
         )
@@ -65,10 +34,19 @@ def full_version_response(message: types.Message):
         bot.reply_to(message, "Спасибо за вашу поддержку 💖. У вас уже открыта полная версия")
 
 
+# Обработка языков
+def language_response(message: types.Message, language_markup: types.InlineKeyboardMarkup):
+    if db.isPurchased(message.from_user.id):
+        bot.reply_to(message, "У вас открыты все ссылки :)\nСпасибо за вашу поддержку 💖.", reply_markup=language_markup)
+    else:
+        for i in range(1, len(language_markup.keyboard[0])):
+            language_markup.keyboard[0][i] = NEED_SUBSCRIPTION
+        bot.reply_to(message, "У вас открыты не все ссылки :(\nДля их открытия оплатите подписку", reply_markup=language_markup)
+
+
 # Меню курса
 def course_response(message: types.Message):
-    # TODO: Меню выбора языка программирования с проверкой на подписку
-    bot.reply_to(message, "Under construction")
+    bot.reply_to(message, "Выберите язык:", reply_markup=LANGUAGES_MENU)
 
 
 # Обработки кнопки обратно
@@ -85,10 +63,16 @@ def button_handler(message: types.Message):
         choose_course_version_response(message)
     elif message.text == '🌐 СоцСети':
         social_response(message) 
-    elif message.text == '📒 Полный Курс':
+    elif message.text == '🪙 Подписка':
         full_version_response(message)
     elif message.text == '✏️ Курс':
         course_response(message)
+    elif message.text == '💻 C#':
+        language_response(message, CSHARP_RESOURCES)
+    elif message.text == '💻 Javascript':
+        language_response(message, JAVASCRIPT_RESOURCES)
+    elif message.text == '💻 Python':
+        language_response(message, PYTHON_RESOURCES)
     elif message.text == '◀️ Вернуться':
         return_response(message)
 
@@ -101,6 +85,13 @@ def successful_payment(message: types.Message):
     print(payment.currency, payment.order_info, payment.invoice_payload, payment.total_amount, payment.telegram_payment_charge_id, payment.provider_payment_charge_id, payment.shipping_option_id, sep='\n')
     if not db.isPurchased(message.from_user.id):
         db.insertUser(message.from_user.id)
+
+
+# Обработка нужна подписка
+@bot.callback_query_handler(func=lambda _: True)
+def subscription_suggestion(call: types.CallbackQuery):
+    if call.data == "need_subscription":
+        full_version_response(call.message)
 
 
 bot.infinity_polling()
