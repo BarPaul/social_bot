@@ -1,5 +1,6 @@
 from telebot import types
 from constans import *
+from copy import deepcopy
 
 
 # Приветствие
@@ -39,12 +40,10 @@ def language_response(message: types.Message, language_markup: types.InlineKeybo
     if db.isPurchased(message.from_user.id):
         bot.reply_to(message, "У вас открыты все ссылки :)\nСпасибо за вашу поддержку 💖.", reply_markup=language_markup)
     else:
+        not_full = types.InlineKeyboardMarkup(keyboard=[[language_markup.keyboard[0][0]]])
         for i in range(1, len(language_markup.keyboard[0])):
-            language_markup.keyboard[0][i].text = f"❌ {language_markup.keyboard[0][i].text}"
-            language_markup.keyboard[0][i].url = None
-            language_markup.keyboard[0][i].callback_data = "need_subscription"
-        bot.reply_to(message, "У вас открыты не все ссылки :(\nДля их открытия оплатите подписку", reply_markup=language_markup)
-
+            not_full.keyboard[0].append(types.InlineKeyboardButton(f"❌ {language_markup.keyboard[0][i].text}", callback_data="need_subscription"))
+        bot.reply_to(message, "У вас открыты не все ссылки :(\nДля их открытия оплатите подписку", reply_markup=not_full)
 
 # Меню курса
 def course_response(message: types.Message):
