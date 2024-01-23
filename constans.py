@@ -20,7 +20,8 @@ SOCIAL_MENU.add(types.InlineKeyboardButton(text="YouTube", url=YOUTUBE), types.I
 SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG), types.InlineKeyboardButton(text="Discord", url=DISCORD))
 
 VERSIONS = types.ReplyKeyboardMarkup(resize_keyboard=True)
-VERSIONS.keyboard = [['🪙 Подписка', '✏️ Курс'], ['◀️ Вернуться']]
+#VERSIONS.keyboard = [['🪙 Подписка', '✏️ Курс'], ['◀️ Вернуться']]
+VERSIONS.keyboard = [['Полная версия', 'Пробная версия'], ['◀️ Вернуться']]
 
 LANGUAGES_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
 LANGUAGES_MENU.keyboard = [["💻 C#", "💻 Javascript", "💻 Python"], ["◀️ Вернуться"]]
