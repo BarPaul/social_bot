@@ -3,11 +3,11 @@
 ```
 git clone https://github.com/NorthStart-Studio/ITLearning_bot.git
 ```
-3. Перейдите в папку репозитория <br>
+2. Перейдите в папку репозитория <br>
 ```
 cd ITLearning_bot
 ```
-5. Создайте файл .env по такому примеру и заполните данными 
+3. Создайте файл .env по такому примеру и заполните данными 
 ```env
 TOKEN=""
 YOUTUBE_LINK="https://youtube.com/"
