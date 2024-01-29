@@ -10,10 +10,18 @@ cd ITLearning_bot
 5. Создайте файл .env по такому примеру и заполните данными 
 ```env
 TOKEN=""
-YOUTUBE_LINK="https://www.youtube.com/"
-TIKTOK_LINK="https://tiktok.com"
-TG_LINK="https://t.me"
-DISCORD_LINK="https://discord.com"
+YOUTUBE_LINK="https://youtube.com/"
+TIKTOK_LINK="https://tiktok.com/"
+TG_LINK="https://t.me/"
+DISCORD_LINK="https://discord.com/"
+CSHARP_BASIC="https://example.com"
+CSHARP_NET="https://example.com"
+JAVASCRIPT_BASIC="https://example.com"
+JAVASCRIPT_TYPESCRIPT="https://example.com"
+JAVASCRIPT_REACT="https://example.com"
+PYTHON_BASIC="https://example.com"
+PYTHON_FASTAPI="https://example.com"
+PYTHON_DJANGO="https://example.com"
 FULL_PRICE=1
 PAYLOAD_TOKEN=""
 ```
@@ -22,6 +30,9 @@ PAYLOAD_TOKEN=""
     TOKEN - токен телеграм бота, <br>
     PAYLOAD_TOKEN - токен для оплаты <br>
     Их можно взять у BotFather <br>
+    CSHARP_ + BASIC, NET - ссылки на источники курса C# для основ и .NET <br>
+    JAVASCRIPT_ + BASIC, TYPESCRIPT, REACT - ссылки на источники курса JavaScript для основ, TypeScript, React <br>
+    PYTHON_ + BASIC, FASTAPI, DJANGO - ссылки на источники курса Python для основ, FastAPI, Django. <br>
     YOUTUBE, TG, TIKTOK, DISCORD + _LINK - соц. сети <br>
     FULL_PRICE - Цена подписки
 </details>
