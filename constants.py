@@ -20,8 +20,8 @@ SOCIAL_MENU.add(types.InlineKeyboardButton(text="YouTube", url=YOUTUBE), types.I
 SOCIAL_MENU.add(types.InlineKeyboardButton(text="Telegram", url=TG), types.InlineKeyboardButton(text="Discord", url=DISCORD))
 
 VERSIONS = types.ReplyKeyboardMarkup(resize_keyboard=True)
-#VERSIONS.keyboard = [['🪙 Подписка', '✏️ Курс'], ['◀️ Вернуться']]
-VERSIONS.keyboard = [['Полная версия', 'Пробная версия'], ['◀️ Вернуться']]
+VERSIONS.keyboard = [['🪙 Подписка', '✏️ Курс'], ['◀️ Вернуться']]
+# VERSIONS.keyboard = [['Полная версия', 'Пробная версия'], ['◀️ Вернуться']]
 
 LANGUAGES_MENU = types.ReplyKeyboardMarkup(resize_keyboard=True)
 LANGUAGES_MENU.keyboard = [["💻 C#", "💻 Javascript", "💻 Python"], ["◀️ Вернуться"]]
@@ -34,9 +34,10 @@ PAYLOAD_TOKEN = getenv("PAYLOAD_TOKEN")
 CSHARP_RESOURCES = types.InlineKeyboardMarkup()
 JAVASCRIPT_RESOURCES = types.InlineKeyboardMarkup()
 PYTHON_RESOURCES = types.InlineKeyboardMarkup()
-CSHARP_RESOURCES.add(types.InlineKeyboardButton(text="Основы языка", url="https://example.com"), types.InlineKeyboardButton(text=".NET", url="https://example.com"))
-JAVASCRIPT_RESOURCES.add(types.InlineKeyboardButton(text="Основы языка", url="https://example.com"), types.InlineKeyboardButton(text="TypeScript", url="https://example.com"), types.InlineKeyboardButton(text="React", url="https://example.com"))
-PYTHON_RESOURCES.add(types.InlineKeyboardButton(text="Основы языка", url="https://example.com"), types.InlineKeyboardButton(text="FastAPI", url="https://example.com"), types.InlineKeyboardButton(text="Django", url="https://example.com"))
+CSHARP_RESOURCES.add(types.InlineKeyboardButton(text="Основы языка", url=getenv("CSHARP_BASIC")), types.InlineKeyboardButton(text=".NET", url=getenv("CSHARP_NET")))
+JAVASCRIPT_RESOURCES.add(types.InlineKeyboardButton(text="Основы языка", url=getenv("JAVASCRIPT_BASIC")), types.InlineKeyboardButton(text="TypeScript", url=getenv("JAVASCRIPT_TYPESCRIPT")), types.InlineKeyboardButton(text="React", url=getenv("JAVASCRIPT_REACT")))
+PYTHON_RESOURCES.add(types.InlineKeyboardButton(text="Основы языка", url=getenv("PYTHON_BASIC")), types.InlineKeyboardButton(text="FastAPI", url=getenv("PYTHON_FASTAPI")), types.InlineKeyboardButton(text="Django", url=getenv("PYTHON_DJANGO")))
+LANGUAGES = {'💻 C#': CSHARP_RESOURCES, '💻 Javascript': JAVASCRIPT_RESOURCES, '💻 Python': PYTHON_RESOURCES}
 
 
 ABOUT_BOT = """*Learning Program* - проект по обучению пользователей, в котором вы узнаете основы языков:
