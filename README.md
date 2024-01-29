@@ -14,14 +14,10 @@ YOUTUBE_LINK="https://www.youtube.com/"
 TIKTOK_LINK="https://tiktok.com"
 TG_LINK="https://t.me"
 DISCORD_LINK="https://discord.com"
-FULL_PRICE=1
-PAYLOAD_TOKEN=""
 ```
 <details>
     <summary>Если непонятно куда что писать</summary>
-    TOKEN - токен телеграм бота, <br>
-    PAYLOAD_TOKEN - токен для оплаты <br>
-    Их можно взять у BotFather <br>
+    TOKEN - токен телеграм бота, (Его можно взять у BotFather)<br>
     YOUTUBE, TG, TIKTOK, DISCORD + _LINK - соц. сети <br>
     FULL_PRICE - Цена подписки
 </details>
