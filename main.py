@@ -23,13 +23,13 @@ def about_bot_response(message: types.Message):
 @bot.message_handler(func=lambda message: message.text in LANGUAGES.keys())
 def language_response(message: types.Message):
     logger.info(f"{message.from_user.full_name} ({message.from_user.id}) смотрит информацию о {message.text}")
-    bot.reply_to(message, "Держите полезные источники курса", reply_markup=LANGUAGES[message.text])
+    bot.reply_to(message, "Держи полезные источники курса", reply_markup=LANGUAGES[message.text])
 
 
 @bot.message_handler(func=lambda message: message.text == '📈 Курсы')
 def course_response(message: types.Message):
     logger.info(f"{message.from_user.full_name} ({message.from_user.id}) смотрит информацию о курсах")
-    bot.reply_to(message, "Выберите язык:", reply_markup=LANGUAGES_MENU)
+    bot.reply_to(message, "Выбери язык программирования:", reply_markup=LANGUAGES_MENU)
 
 
 @bot.message_handler(func=lambda message: message.text == '◀️ Вернуться')
