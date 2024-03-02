@@ -10,12 +10,18 @@ cd ITLearning_bot
 3. Создайте файл .env по такому примеру и заполните данными 
 ```env
 TOKEN=""
+VERSION="0.2"
+LAST_UPDATE="Изменение 1
+Изменение 2
+Иземение 3"
 YOUTUBE_LINK="https://www.youtube.com/"
 TIKTOK_LINK="https://tiktok.com"
 TG_LINK="https://t.me"
 DISCORD_LINK="https://discord.com"
 CSHARP_BASIC="https://example.com"
 CSHARP_NET="https://example.com"
+CPP_BASIC="https://example.com"
+PHP_BASIC="https://example.com"
 JAVASCRIPT_BASIC="https://example.com"
 JAVASCRIPT_TYPESCRIPT="https://example.com"
 JAVASCRIPT_REACT="https://example.com"
@@ -26,8 +32,12 @@ PYTHON_DJANGO="https://example.com"
 <details>
     <summary>Если непонятно куда что писать</summary>
     TOKEN - токен телеграм бота, (Его можно взять у BotFather)<br>
+    VERSION - версия бота <br>
+    LAST_UPDATE - последние изменения в боте <br>
     YOUTUBE, TG, TIKTOK, DISCORD + _LINK - соц. сети <br>
     CSHARP_ + BASIC, NET - ссылки на источники курса C# для основ и .NET <br>
+    CPP_ + BASIC - ссылки на источники курса С++ для основ <br>
+    PHP_ + BASIC - ссылки на источники курса PHP для основ <br>
     JAVASCRIPT_ + BASIC, TYPESCRIPT, REACT - ссылки на источники курса JavaScript для основ, TypeScript, React <br>
     PYTHON_ + BASIC, FASTAPI, DJANGO - ссылки на источники курса Python для основ, FastAPI, Django.
 </details>

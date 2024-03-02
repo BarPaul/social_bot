@@ -14,6 +14,12 @@ def social_response(message: types.Message):
     bot.reply_to(message, "Наши соцсети:", reply_markup=SOCIAL_MENU)
 
 
+@bot.message_handler(func=lambda message: message.text == '🆙 Обновления')
+def update_response(message: types.Message):
+    logger.info(f"{message.from_user.full_name} ({message.from_user.id}) смотрит обновления бота")
+    bot.reply_to(message, f"Обновления v{VERSION}:\n{LAST_UPDATE}")
+
+
 @bot.message_handler(func=lambda message: message.text == '📃 О боте')
 def about_bot_response(message: types.Message):
     logger.info(f"{message.from_user.full_name} ({message.from_user.id}) смотрит информацию о боте")
@@ -38,4 +44,5 @@ def return_response(message: types.Message):
     bot.reply_to(message, "Возращаемся в главное меню...", reply_markup=GLOBAL_MENU)
 
 
-bot.infinity_polling(timeout=0)
+if __name__ == '__main__':
+    bot.infinity_polling(timeout=0)
